@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+	<node pkg="move_base" type="move_base" respawn="false" name="move_base">
+    <rosparam file="$(find f1tenth_simulator)/f1tenth-clemson/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find f1tenth_simulator)/f1tenth-clemson/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find f1tenth_simulator)/f1tenth-clemson/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find f1tenth_simulator)/f1tenth-clemson/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find f1tenth_simulator)/f1tenth-clemson/config/teb_local_planner_params.yaml" command="load" />
+
+    <param name="base_global_planner" value="global_planner/GlobalPlanner" />
+    <param name="planner_frequency" value="20.0" />
+    <param name="planner_patience" value="10.0" />
+	<param name="cost_factor" value="0.8" />
+	<param name="neutral_cost" value="65" />
+
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+    </node>
+
+    <!--Launch MPC controller-->
+    <rosparam file="$(find f1tenth_simulator)/f1tenth-clemson/config/berlin_racing_line.yaml" command="load" />
+    <node pkg="f1tenth_simulator" type="navigation_path_publisher.py" name="global_path_reference" />
+    <node pkg="f1tenth_simulator" type="local_path_generation.py" name="local_path_generation" output = "screen" />
+    <node pkg="f1tenth_simulator" type="pure_pursuit_local.py" name="pure_pursuit_controller" output = "screen" />
+    <include file="$(find f1tenth_simulator)/launch/simulator.launch" />
+</launch>

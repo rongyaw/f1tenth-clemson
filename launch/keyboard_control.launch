@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="f1tenth_simulator" type="keyboard_teleop.py" name="keyboard_teleop" output="screen" />
+    <node pkg="f1tenth_simulator" type="mpc_control_publisher.py" name="mpc_control_publisher" />
+    <include file="$(find f1tenth_simulator)/launch/simulator.launch"/>
+</launch>

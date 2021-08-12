@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <rosparam file="$(find f1tenth_simulator)/f1tenth-clemson/config/berlin_racing_line.yaml" command="load" />
+    <node pkg="f1tenth_simulator" type="navigation_path_publisher.py" name="global_path_reference" output="screen" />
+    <node pkg="f1tenth_simulator" type="koopman_mpc.py" name="koopman_mpc" output = "screen" />
+    <node pkg="f1tenth_simulator" type="mpc_control_publisher.py" name="mpc_control_publisher" output="screen" />
+    <include file="$(find f1tenth_simulator)/launch/simulator.launch"/>
+</launch>
