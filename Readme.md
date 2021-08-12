@@ -41,7 +41,7 @@ nano simulator.launch
 - Copy the simulator_2.rviz to f1tenth_simulator/launch directory
 - Open the same launch file as in the previous directory and change the simulator.rviz file to simulator_2.rviz at the bottom of the file
 
-<img src = "/f1tenth_simulation.gif" width = "550"><img src = "/augmented_koopman_trajectory.png" width = "350">
+<img src = "/f1tenth_simulation.gif" width = "500"><img src = "/augmented_koopman_trajectory.png" width = "300">
 
 # Run controllers
 1. **Adaptive Pure pursuit**
