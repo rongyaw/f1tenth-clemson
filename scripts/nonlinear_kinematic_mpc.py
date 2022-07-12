@@ -74,8 +74,8 @@ def nonlinear_kinematic_mpc_solver(x_ref, x_0, N):
         cost += u[:, t].T @ R @ u[:, t]
         if t != 0:
             cost += (x_ref[:, t].T - x[:, t].T) @ Q @ (x_ref[:, t] - x[:, t])
-        opti.subject_to(x[0, t + 1] == x[0, t] + casadi.cos(x[2, t])*dt)
-        opti.subject_to(x[1, t + 1] == x[1, t] + casadi.sin(x[2, t])*dt)
+        opti.subject_to(x[0, t + 1] == x[0, t] + x[3, t]*casadi.cos(x[2, t])*dt)
+        opti.subject_to(x[1, t + 1] == x[1, t] + x[3, t]*casadi.sin(x[2, t])*dt)
         opti.subject_to(x[2, t + 1] == x[2, t] + x[3, t]*casadi.tan(u[1, t])/WB*dt)
         opti.subject_to(x[3, t + 1] == x[3, t] + u[0, t]*dt)
 
